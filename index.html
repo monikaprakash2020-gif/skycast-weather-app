@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyCast Weather</title>
+<style>
+:root{
+  --bg:#f1f3f4;
+  --card:#ffffff;
+  --text:#202124;
+  --muted:#5f6368;
+  --line:#e5e7eb;
+  --chip:#f8f9fa;
+  --green:#01875f;
+  --green-dark:#017354;
+  --blue:#1a73e8;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, Helvetica, sans-serif;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+.container{
+  max-width:1000px;
+  margin:0 auto;
+  min-height:100vh;
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+.hero{
+  padding:28px 22px 18px;
+  border-bottom:1px solid var(--line);
+}
+.top{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.app-icon{
+  width:96px;
+  height:96px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#66d0ff,#1e88e5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  color:#fff;
+  flex-shrink:0;
+  box-shadow:0 10px 24px rgba(30,136,229,.25);
+}
+.app-meta{
+  flex:1;
+  min-width:0;
+}
+.app-title{
+  font-size:2rem;
+  font-weight:700;
+  margin-bottom:6px;
+  letter-spacing:.2px;
+}
+.developer{
+  color:var(--blue);
+  font-weight:700;
+  margin-bottom:8px;
+  font-size:1rem;
+}
+.tagline{
+  color:var(--muted);
+  font-size:1rem;
+  max-width:760px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  padding:18px 0 8px;
+}
+.stat-card{
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+}
+.stat-value{
+  font-size:1.08rem;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.stat-label{
+  color:var(--muted);
+  font-size:.92rem;
+}
+.install-wrap{
+  padding-top:14px;
+}
+.install-btn{
+  display:inline-block;
+  background:var(--green);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  padding:14px 30px;
+  border-radius:999px;
+  box-shadow:0 8px 20px rgba(1,135,95,.25);
+  transition:.2s ease;
+}
+.install-btn:hover{
+  background:var(--green-dark);
+  transform:translateY(-1px);
+}
+.section{
+  padding:24px 22px;
+  border-top:1px solid var(--line);
+}
+.section h2{
+  font-size:1.3rem;
+  margin-bottom:14px;
+}
+.about{
+  color:#444;
+  font-size:1rem;
+  line-height:1.8;
+}
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+.chip{
+  background:var(--chip);
+  border:1px solid var(--line);
+  color:#444;
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:.92rem;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:16px;
+}
+.feature{
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+}
+.feature h3{
+  font-size:1.05rem;
+  margin-bottom:8px;
+}
+.feature p{
+  color:#555;
+  line-height:1.65;
+  font-size:.96rem;
+}
+.box{
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+}
+.info-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 18px;
+}
+.info-item{
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+}
+.info-label{
+  color:var(--muted);
+  font-size:.88rem;
+  margin-bottom:4px;
+}
+.info-value{
+  font-size:1rem;
+  font-weight:600;
+  word-break:break-word;
+}
+.footer{
+  border-top:1px solid var(--line);
+  padding:22px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.95rem;
+}
+.footer strong{
+  color:var(--text);
+}
+@media (max-width:860px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .info-list{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:620px){
+  .top{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .app-icon{
+    width:84px;
+    height:84px;
+    font-size:36px;
+    border-radius:22px;
+  }
+  .app-title{
+    font-size:1.65rem;
+  }
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media (max-width:420px){
+  .stats{
+    grid-template-columns:1fr;
+  }
+  .section{
+    padding:22px 16px;
+  }
+  .hero{
+    padding:24px 16px 16px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+<div class="top">
+<div class="app-icon">☁️</div>
+<div class="app-meta">
+<div class="app-title">SkyCast Weather</div>
+<div class="developer">Reeyansh✓</div>
+<div class="tagline">Most lightest weather app ever made with live weather updates and home screen widget support</div>
+</div>
+</div>
+<div class="stats">
+<div class="stat-card">
+<div class="stat-value">Not rated</div>
+<div class="stat-label">Rating</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">0+</div>
+<div class="stat-label">Downloads</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">20.7 KB</div>
+<div class="stat-label">Size</div>
+</div>
+<div class="stat-card">
+<div class="stat-value">Android</div>
+<div class="stat-label">Platform</div>
+</div>
+</div>
+<div class="install-wrap">
+<a class="install-btn" href="https://mega.nz/file/Nj0BGBoI" target="_blank">Install</a>
+</div>
+</header>
+<section class="section">
+<h2>About this app</h2>
+<p class="about">
+SkyCast Weather is a clean lightweight Android weather app built to give fast weather access without clutter.
+It focuses on live weather updates a simple interface and widget support for quick viewing directly from the home screen.
+The goal is to stay tiny fast and easy to use while still looking polished and practical.
+</p>
+<div class="chips">
+<div class="chip">Live weather</div>
+<div class="chip">Tiny app size</div>
+<div class="chip">Widget support</div>
+<div class="chip">Minimal UI</div>
+<div class="chip">Fast launch</div>
+</div>
+</section>
+<section class="section">
+<h2>Features</h2>
+<div class="grid">
+<div class="feature">
+<h3>Live Weather</h3>
+<p>Check current weather conditions quickly in a simple interface designed to be easy to read and fast to open.</p>
+</div>
+<div class="feature">
+<h3>Widget Support</h3>
+<p>View weather details directly on your home screen using the included widget without opening the app every time.</p>
+</div>
+<div class="feature">
+<h3>Ultra Lightweight</h3>
+<p>Built to stay extremely small and lightweight so it feels quick responsive and easy on storage.</p>
+</div>
+<div class="feature">
+<h3>Clean UI</h3>
+<p>A simple design that keeps the focus on weather info first instead of filling the screen with unnecessary clutter.</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2>Whats new</h2>
+<div class="box">
+<p class="about">Initial public release of SkyCast Weather with live weather support home screen widget support and a lightweight interface.</p>
+</div>
+</section>
+<section class="section">
+<h2>App info</h2>
+<div class="info-list">
+<div class="info-item">
+<div class="info-label">App name</div>
+<div class="info-value">SkyCast Weather</div>
+</div>
+<div class="info-item">
+<div class="info-label">Developer</div>
+<div class="info-value">Reeyansh✓</div>
+</div>
+<div class="info-item">
+<div class="info-label">Package name</div>
+<div class="info-value">com.example.weather</div>
+</div>
+<div class="info-item">
+<div class="info-label">Version</div>
+<div class="info-value">1.0</div>
+</div>
+<div class="info-item">
+<div class="info-label">Category</div>
+<div class="info-value">Weather</div>
+</div>
+<div class="info-item">
+<div class="info-label">App size</div>
+<div class="info-value">20.7 KB</div>
+</div>
+<div class="info-item">
+<div class="info-label">Downloads</div>
+<div class="info-value">Currently new so no downloads</div>
+</div>
+<div class="info-item">
+<div class="info-label">Rating</div>
+<div class="info-value">Currently not rated</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2>Permissions</h2>
+<div class="box">
+<p class="about">
+SkyCast Weather does not need permissions for normal use.
+If notification features are added or enabled later the app may request notification permission only for that purpose.
+</p>
+</div>
+</section>
+<section class="section">
+<h2>Data safety</h2>
+<div class="box">
+<p class="about">
+No special permissions are required by default.
+Notification permission may be requested only if notifications are used.
+Weather data powered by AccuWeather.
+</p>
+</div>
+</section>
+<footer class="footer">
+Made by <strong>Reeyansh✓</strong>
+</footer>
+</div>
+</body>
+</html>
