@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA-256-Digest: bVIEMIF3WYMycP1EKHE/k0OUNDjUaACccSkD3YX+SUE=
+
+Name: classes.dex
+SHA-256-Digest: XmOy0SY07tGTg30FysfnROacj+pjnNz/rOUMooXPtno=
+
+Name: lib/arm64-v8a/libweatherabi.so
+SHA-256-Digest: nRRClj6/mWWu3maiMVEtRDuKFsK/zkRfu1q5odh9Od0=
+
+Name: res/drawable/ic_launcher.xml
+SHA-256-Digest: RNhM9u5sIZOlUH9pxNiwZTkPisfjI8CJDPGKj90A5gI=
+
+Name: res/layout/weather_widget.xml
+SHA-256-Digest: kXKC28GnCm8EHactIFrJlFe5bsPHAa21INf1jRW1Ad8=
+
+Name: res/xml/weather_widget_info.xml
+SHA-256-Digest: a2TYzXoikoyCe57BKO9iVSBtsQpgOBNKfYDexah8SGg=
+
+Name: resources.arsc
+SHA-256-Digest: 4aOuH6vwEA/HnIEGsFvywLlATnjqaMcxZPy0B1+LCrk=
+
